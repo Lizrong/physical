@@ -1,0 +1,53 @@
+
+{% extends 'public.html' %}
+{% load static %}
+{% block content %}
+<head>
+      <title>购物车</title>
+      <script type="text/javascript" charset="utf-8" src="{% static 'js/jquery.js' %}"></script>
+      <script src="{% static 'js/cart.js' %}"></script>
+      <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+  </head>
+  <body>
+     <table>
+         <thead>
+             <tr>
+				 <th class="tdcheckbox" > <input type="checkbox" id="selectall">全选</th>
+                 <th class="tdtwo">商品名称</th>
+				 <th class="tdprice">专柜价(￥)</th>
+				 <th class="tdfour">现价(￥)</th>
+                 <th class="tdthree">数量</th>
+				 <th class="youhui">优惠(￥)</th>
+                 <th class="tdfive">小计（￥）</th>
+                 <th class="tdsix">操作</th>
+             </tr>
+         </thead>
+         <tbody>
+            {% for item in infolist %}
+                 <tr class="trclass" id="{{ item.goodid }}good" ga="{{ item.id }}">
+                     <td class="tdone" cartid="{{ item.id }}">
+
+                         <input type="checkbox" id="{{ item.id }}a"  class="ischose" ga="{{ item.subtotal }}"
+                         {% if item.c_state %} checked {% endif %}></td>
+                     <td class="tdtwo ">{{ item.goodname }}</td>
+                     <td class="zhuankuijia">{{ item.g_shoppe }}</td>
+                     <td class="tdfour"><span class="unit">{{ item.c_price}}</span></td>
+                     <td class="tdthree">
+                         <span class="jiajie">
+                            <button class="subShopping"  ga="{{item.goodid}}">-</button>
+                            <span id="{{item.goodid}}" >{{ item.c_number}}</span>
+                            <button class="addShopping"  ga="{{item.goodid}}">+</button>
+                        </span>
+                     </td>
+                     <td class="tdfour1"><span>{{ item.youhui }}</span><span class="unit"></span></td>
+                     <td class="tdfive"><span id="subtotal{{ item.id }}">{{ item.subtotal }}</span><span class="subtal"></span></td>
+                     <td class="tdsix"><button class="del"  ga="{{ item.goodid }}">删除</button></td>
+                 </tr>
+            {% endfor %}
+             <tr>
+				<td colspan="8"; class="talast">共计(不含运费)：￥<span class="pricetal" id="allprice">0</span><input class="jiesuan" type="button" onclick="commit()" value="结算"></td>
+			 </tr>
+         </tbody>
+     </table>
+
+{% endblock content %}

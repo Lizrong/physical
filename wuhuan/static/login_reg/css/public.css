@@ -1,0 +1,151 @@
+body,div,p,ol,ul,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,table,tr,td,th,form,hr,input,textarea{
+	margin:0;
+	padding:0;
+}
+body,html{
+	height:100%;
+}
+body{
+	background:white;
+	font-family:"微软雅黑",Arial;
+}
+a{
+	text-decoration:none;
+}
+ul,ol{
+	list-style:none;
+}
+img{
+	display: block;
+}
+input{
+	outline: none;
+}
+
+/*moreLink*/
+.moreLink{
+	height: 195px;
+	margin-left:27px;
+	border-bottom:1px solid #e6e6e6;
+	border-top:1px solid #e6e6e6;
+}
+.moreLink .wordCo a{
+	color: #cdcbc9;
+}
+.moreLink .copyLink{
+	margin-right: 58px;
+	float: left;
+}
+.moreLink .special{
+	margin-right: 46px;
+}
+.moreLink .copyLink .addflo{
+	float: left;
+	margin-top: 36px;
+	margin-right: 8px;
+}
+.moreLink .copyLink .bgIcon{
+	background-position:0 -2360px;
+}
+.moreLink .copyLink .aboutPay{
+	background-position:0px -2400px;
+}
+.moreLink .copyLink .after{
+  	background-position:0px -2440px;
+ }
+.moreLink .copyLink .aboutUs{
+  	background-position:0px -2480px;
+}
+.moreLink .copyLink .together{
+	background-position:0px -2520px;
+}
+.moreLink .copyLink .fix{
+	background-position:0px -2560px;
+}
+.moreLink .copyLink .give{
+	background-position:0px -2600px;
+}
+
+.moreLink .copyLink .liAh{
+	float: left;
+}
+.moreLink .copyLink h4{
+	font-size: 11px;
+	color: #616161;
+	line-height: 25px;
+	padding-top: 36px;
+}
+.wordCo .copyLink h4{
+	color: #cdcbc9;
+}
+.moreLink .copyLink ul{
+	list-style: none;
+}
+.moreLink .copyLink ul li{
+	font-size: 11px;
+	color: #616161;
+	line-height: 25px;
+}
+.moreLink .copyLink ul li a{
+	color: #616161;
+}
+.wordCo .copyLink ul li a{
+	color: #cdcbc9;
+}
+.moreLink .phoneNumber{
+	padding-top: 36px;
+	margin-right: 0px;
+	margin-left:23px;
+	
+}
+/*linkes*/
+.boxLinks{
+	margin-left:27px;
+	margin-right: 26px;
+	height: 50px;
+	padding-top: 20px;
+	padding-bottom: 8px;
+	position: relative;
+}
+.boxLinks .links{
+	float: left;
+	width: 1038px;
+}
+.boxLinks h4{
+	float: left;
+	font-size: 11px;
+	color: #7c7c7c;
+	margin-right: 19px;
+	padding-left: 54px;
+	line-height: 11px;
+	height: 58px;
+}
+.boxLinks a{
+	float: left;
+	font-size: 11px;
+	color: #7c7c7c;
+	padding-bottom: 13px;
+	margin-right: 11px;
+	line-height: 11px;
+}
+.boxLinks img{
+	float:right;
+	position:absolute;
+	bottom: 0;
+	right: 0;
+}
+
+/*footer*/
+.footer{
+	height: 80px;
+	background:#616161;
+	text-align: center;
+	padding-top: 27px;
+	border-top:2px solid #9fc846;
+}
+.footer p{
+	font-size: 14px;
+	color: white;
+	margin: 0 auto;
+	line-height: 18px;
+}

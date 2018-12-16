@@ -1,0 +1,1 @@
+document.write("<a href='http://wljg.snaic.gov.cn//ei/Ei!certificate.action?id=61000000000084' target='_blank' style='border:0;'><img src='http://wljg.snaic.gov.cn//ei/Ei!readEiImgByMemory.action' style='border:0;'/></a>")

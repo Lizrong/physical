@@ -1,0 +1,325 @@
+{% extends 'public.html' %}
+{% load static %}
+{% block content %}
+
+    <div id="box_2" style="border: none">
+        <div class="tj_d">
+            <p class="hp_1">填写并核对订单信息</p>
+            <ul id="tj_1" class="tj_1" id="addresses">
+                <p>
+                    <span class="sp_1">收货人信息</span>
+                </p>
+                <li>
+                    <span class="sp_2">姓名</span>
+                    <span class="sp_3">地址</span>
+                    <span class="sp_4">电话</span>
+                    <span class="sp_2">
+                        <a href="#" style="margin-right: 20px; display: none;">编辑</a>
+                        <a href="javascript:void(0);" onclick="DeleData()">删除</a>
+                    </span>
+                </li>
+                {% for ad in address %}
+                    <li id="{{ forloop.counter }}li" {% if forloop.first %} style="display: block" {% else %}
+                        style="display: none" {% endif %}>
+						<span class="sp_2">
+                            <input id="{{ ad.id }}" type="radio" name="citys" {% if forloop.first %}
+                                   checked=true  {% endif %}>
+						{{ ad.a_name }}
+                        </span>
+                        <span class="sp_3"> {{ ad.a_region }} {{ ad.a_detailed_info }}</span>
+                        <span class="sp_4">{{ ad.a_phone }}</span>
+                    </li>
+                {% endfor %}
+
+                <li>
+                    <a style="cursor: pointer" class="sq" id="ck">查看常用地址↓</a>
+                </li>
+
+
+            </ul>
+            <ul id="tj_2" class="tj_2" onclick="addclass()">
+                <p class="hp">
+                    <input type="radio" name="dz" class="radio"/> 使用新地址
+                </p>
+                <li>
+                    <span class="sp_1"><b>*</b>收货人:</span>
+                    <input type="text" class="txt" id="name"/>
+                </li>
+
+                <li>
+                    <span class="sp_1"><b>*</b>所在地区:</span>
+                    <select id="province" onchange="change();">
+                        <option selected="selected" value="">请选择省份</option>
+                        {% for c in cites %}
+                            <option value="{{ c.id }}">{{ c.cityname }}</option>
+                        {% endfor %}
+                    </select>
+                    <select id="city" onchange="changeCity();">
+                        <option selected="selected" value="">请选择城市</option>
+                    </select>
+                    <select id="district">
+                        <option selected="selected" value="">请选择区/县</option>
+                    </select>
+
+                </li>
+
+                <li>
+                    <span class="sp_1"><b>*</b>详细地址:</span>
+                    <input id="address" type="text" class="txt" style="width: 300px"/>
+                </li>
+
+                <li>
+                    <span class="sp_1"><b>*</b>手机号码:</span>
+                    <input id="telnumber" type="text" class="txt"/>
+                </li>
+
+                <li>
+                    <a href="javascript:void(0);" target="_blank"
+                       class="button_1" onclick="addAddress()">确定</a>
+                </li>
+
+            </ul>
+
+
+            <ul class="tj_3">
+
+                <p class="hp">配送方式</p>
+
+                <table style="margin-left: 0px;">
+
+                    <tbody>
+
+                    <tr>
+                        <td style="vertical-align: middle;" align="left"><select
+                                size="5" style="width: 198px;" id="expressTypeId"
+                                class="gwt-ListBox" onchange="modifyExpressFee()">
+
+                            <option value="1" selected=selected>快递</option>
+                            <option value="4">顺丰</option>
+
+
+                        </select>
+                        </td>
+
+                        <td style="vertical-align: middle;" align="left">
+                            <div class="gwt-Label">您需要支付运费:</div>
+                        </td>
+
+                        <td style="vertical-align: middle;" align="left">
+                            <div id="expressFee" class="gwt-Label redBox" style="color: red">
+                                10
+                            </div>
+                        </td>
+
+                        <td style="vertical-align: middle;" align="left">
+                            <div class="gwt-Label">元</div>
+                        </td>
+
+                        <td style="height: 100%; width: 608px;" align="left">
+
+                            <div
+
+                                    style="vertical-align: middle; border: 1px solid #cccccc; height: 79px; width: 540px; margin-right: 0px;">
+
+                                <p
+
+                                        style="margin: 25px 25px 0 25px; font-size: 13px; text-align: left;">
+
+                                    次日达来了！今日下单，明日送达，当天15:00支付成功的订单，规定时间未送达，整<br/>单包邮！（仅限部分地区，规则详情请参阅<a
+
+                                        href="javascript:void(0)" onclick="wuliutishi()">物流配送</a>相关规则。）如遇网站促销活动期间，因发货量巨大，故无法保证次日达。敬请谅解。
+
+                                </p>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                    </tbody>
+
+                </table>
+
+                <p class="hp2" style="display: none;">
+
+                    注：凡购买数量大于1件的顾客，请在下单时与客服联系补运费。</p>
+
+            </ul>
+
+
+            <!-- 判断是否有会员卡，有的话显示优惠券和积分 -->
+
+            <ul class="tj_5">
+
+                <p class="hp">
+
+                    商品清单 <a style="float: right; font-weight: normal" href="/cart">返回修改购物车</a>
+
+                </p>
+
+                <p class="hp1">
+
+                    <span class="sp_1">商品</span><span class="sp_2">专柜价（元）</span><span
+
+                        class="sp_2">五环价（元）</span><span class="sp_2">优惠</span><span
+
+                        class="sp_2">数量</span><span class="sp_2">库存状态</span>
+
+                </p>
+
+                {% for cart in carts %}
+                <li id="{{ cart.id }}"><span class="sp_1">
+                    <img  src="/static/{{ cart.c_goods.g_thumbail }}"/>
+                        <p>
+                            <a href="./product/1396245.html" target="_blank">{{ cart.c_goods.g_long_name }}</a>
+                                <b class="proSku">货号：{{ cart.c_goods.g_code }}</b>
+                                <b class="proSku">颜色：{{ cart.c_color }}&nbsp;&nbsp;尺码：{{ cart.c_size }}</b>
+                        </p> <!-- <span class="userbak">[用户备注]</span> --> </span>
+                    <span class="sp_2" style="padding-top: 40px;">
+                        <b class="b_1">{{ cart.c_goods.g_shoppe }}</b>
+                    </span>
+                    <span class="sp_2" style="padding-top: 40px;"> ￥<b class="promotionPrice">{{ cart.c_goods.g_price }}</b></span>
+                    <span class="sp_2" style="padding-top: 40px;" id="saveMoney5256089">￥<b>0</b></span>
+                    <span class="sp_2" style="padding-top: 40px;"><b class="prosum">{{ cart.c_number }}</b></span>
+                    <span class="sp_2"
+                                                                                                         style="padding-top: 40px;">有货
+
+									</span>
+                </li>
+                    {% empty %}
+                    空空如也
+                {% endfor %}
+
+            </ul>
+
+            <p class="hp4">
+
+                <span>用户备注：</span> <input type="text" id="memo"/>
+
+                <span class="sp_1">
+                    ￥<span id="pr">{{ price }}</span> <br/>
+                    ￥<b id="exp">10</b><br/>
+                    ￥<b id="totalPrice1">0</b> <br/>
+                </span>
+
+                <span class="sp_1">
+
+						<b>{{ carts.count }}</b>件商品，总商品金额： <br/>
+
+							运费： <br/>
+							应付总额： <br/>
+
+						</span>
+
+            </p>
+
+
+            <!-- 活动广告提示信息 -->
+
+            <p class="hp4" style="display: none;">
+
+                <span class="sp_1" style="color:red;font-family: '宋体';">5.28耐克全场5折封顶，满99包邮!</span>
+
+            </p>
+
+            <p class="hp5">
+
+                <a style="cursor: pointer" class="button_1" id="tj_c"
+
+                   onclick="commitOrder()">提交订单</a><span id="tishi"
+
+                                                         style="display: none; font-size: 16px">正在生成订单，请勿刷新避免重复提交订单</span><span>应付总额<b
+
+                    id="totalPrice">0</b>元
+
+						</span>
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <!--box end-->
+    <!--提交成功-->
+
+    <div id="tjc">
+
+        <a href="javascript:void(0)" title="关闭窗口" class="close_btn"
+
+           id="closeBtn">×</a>
+
+        <ul class="tjc">
+
+            <li><img src="{% static 'images/go1.png' %}"/><span>提交成功</span></li>
+
+            <li>
+
+                系统已确认您的订单，因本商场是店网同销，为避免货物滞留，请您于60分钟内完成支付，否则订单将自动作废，很抱歉给您带来的不便，感谢您的支持。
+
+                <a href="index.html" target="_blank">五环网上商城</a>
+
+            </li>
+
+        </ul>
+
+    </div>
+
+    <!--显示物流配送提示-->
+
+    <div class="shadow"></div>
+
+    <div id="wlts">
+
+        <ul>
+
+            <li style="background-color: #eeeeee;"><span>次日达规则</span> <a
+
+                    href="javascript:void(0)" onclick="closeWuliu()" title="关闭窗口"
+
+                    class="close_btn">×</a></li>
+
+            <li>
+
+                <p>
+
+                    <strong>次日达——今日下单，明日送达！</strong><br/> 1、
+
+                    仅限当天15:00之前支付成功的订单，规定时间未送达退整单运费。<br/> 2、
+
+                    仅限西安市客户，包括：碑林区、雁塔区、高新区、未央区、灞桥区、阎良区、新城区、莲湖区、长安区、蓝田县、周至县、户县、高陵县。<br/>
+
+                    3、 因专柜货品原因，需要外调商品的情况导致延误除外。<br/> 4、 因特殊天气导致的延误除外。<br/> 5、
+
+                    因大型电商节日导致的延误除外。<br/>
+
+                </p>
+
+            </li>
+
+        </ul>
+
+    </div>
+
+    <!--下单成功提示-->
+
+    <div id="orderCreateSuccess">
+
+        <p class="orderCreateSuccess_title">系统已确认您的订单</p>
+
+        <p class="orderCreateSuccess_text1" id="orderNo">0</p>
+
+        <p class="orderCreateSuccess_text2">
+
+            因本商场是店网同销，为避免货物滞留，请您于30分钟内完成支付，否则订单将自动作废，很抱歉给您带来的不便，感谢您的支持。
+
+        </p>
+
+        <p class="orderCreateSuccess_sub" style="background-color: #ff1f00;"><a href="">确定</a></p>
+
+        <p class="orderCreateSuccess_text3"><a href="/index.jsp" style="color: #333333;">五环网上商城</a></p>
+
+    </div>
+
+{% endblock content %}

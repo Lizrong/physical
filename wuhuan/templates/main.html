@@ -1,0 +1,1595 @@
+{% extends 'public.html' %}
+{% load static %}
+    <!--box-->
+    {% block content %}
+
+    <div id="box">
+
+      <div class="sort">
+
+        <div class="b_le">
+
+          <a href="/facetSearch">
+
+<div class="sort-ti">
+
+  全部商品分类
+
+</div></a>
+
+<div class="sort-list">
+
+  <ul class="one">
+
+    {% for one_k,one_v in level.items %}
+    <!--{{ one.c_name }}-->
+    <li>
+      <h2><a href="javascript:void(0)" onclick="javascript:getUrl0('rootName', '{{ one_k.c_name }}')" target="_blank" class="sort-list-1 clear"><b>{{ one_k.c_name }}<i>(4448)</i></b></a></h2>
+
+      <br/>
+      {% for so in one_k.so8 %}
+        <a href="javascript:void(0)" onclick="javascript:getUrl2('rootName', '{{ one_k.c_name }}', 'text', '{{ so.c_name }}')" target="_blank" class="sort-list-1"><span>{{ so.c_name }}</span></a>
+      {% endfor %}
+      <ul>
+        {% for two2_k, two2_v in one_v.items %}
+
+          <li>
+
+            <a href="javascript:void(0)" onclick="javascript:getUrl2('rootName', '{{ one_k.c_name }}','text', '{{ two2_k.c_name }}')" target="_blank" class="sort-list-1"><b>{{ two2_k.c_name }}</b></a>
+
+            {% for le in two2_v %}
+              <div>
+                <a href="javascript:void(0)" onclick="javascript:getUrl3('rootName', '{{ one_k.c_name }}','text', '{{ two2_k.c_name }}', 'nodeName', '{{ le.c_name }}')"><i>|</i><span>{{ le.c_name }}</span></a>
+              </div>
+            {% endfor %}
+          </li>
+        {% endfor %}
+    </ul>
+    </li>
+    {% endfor %}
+
+
+
+
+    <a href="" target="_blank">
+         <dd><img src="{% static 'images/Small2402.jpg' %}" /></dd>
+    </a>
+
+    <dd>
+
+      <b>价格范围 ></b>
+
+      <p class="clear">
+
+          <a href="/facetSearch?currentPrice=0-400" target="_blank">0-400元(2968)</a>
+
+          <a href="/facetSearch?currentPrice=401-1000" target="_blank">401-1000元(1851)</a>
+
+          <a href="/facetSearch?currentPrice=1001-1500" target="_blank">1001-1500元(203)</a>
+
+          <a href="/facetSearch?currentPrice=1500-~" target="_blank">1500~元(45)</a>
+
+      </p>
+
+    </dd>
+
+    <dd>
+
+      <b>性别搜索 ></b>
+
+      <p class="clear">
+
+        <a href="/facetSearch?GD=男" target="_blank">男性</a>
+
+        <a href="/facetSearch?GD=女" target="_blank">女性</a>
+
+        <a href="/facetSearch?GD=中性" target="_blank">中性</a>
+
+        <a href="/facetSearch?GD=儿童" target="_blank">儿童</a>
+
+      </p>
+
+    </dd>
+
+  </ul>
+
+  <script>
+
+    $(document).ready(function() {
+
+        $(".star-img-list li").each(function() {
+
+            $(this).find(".cover").css("top", -$(this).height());
+
+            $(this).hover(function() {
+
+                $(this).find(".cover").animate({
+
+                    top : "0"
+
+                }, 300)
+
+            }, function() {
+
+                $(this).find(".cover").animate({
+
+                    top : $(this).height()
+
+                }, {
+
+                    duration : 300,
+
+                    complete : function() {
+
+                        $(this).css("top", -$(this).parent("li").height())
+
+                    }
+
+                })
+
+            })
+
+        })
+
+    });
+
+  </script>
+
+    </div>
+
+        </div>
+
+      </div>
+
+      <!--左边 end-->
+
+
+      <!--右边-->
+
+      <div class="b_ri">
+
+        <div class="slides">
+
+          <ul class="slide-pic">
+
+            <!-- 增加图片显示开始 -->
+
+              <li class="cur">
+                  <a id="a0" href="/facetSearch?sort=sellingTime|desc&totalPages=5" target="_blank">
+                      <img id="img1" src="{% static 'images/Small2251.jpg' %}" alt="最新上架">
+                  </a>
+              </li>
+
+              <li class="cur">
+                  <a id="a1" href="{% url 'wuhuan:nick' %}" target="_blank">
+                      <img id="img2" src="{% static 'images/Small2252.jpg' %}" alt="耐克专场">
+                  </a>
+              </li>
+
+              <li class="cur">
+                    <a id="a2" href="{% url 'wuhuan:adidas' %}" target="_blank">
+                        <img id="img3"src="{% static 'images/Small2253.jpg' %}" alt="阿迪达斯专区">
+                    </a>
+              </li>
+
+              <li class="cur">
+                  <a id="a3" href="/promotion/2251.html" target="_blank">
+                      <img id="img4" src="{% static 'images/Small2254.jpg' %}" alt="哥伦比亚专场">
+                  </a>
+              </li>
+
+
+              <li class="cur">
+                <a id="a4"
+                    href="/promotion/2531.html" target="_blank">
+                    <img id="img5" src="{% static 'images/Small2255.jpg' %}" alt="篮球鞋专区">
+                </a>
+              </li>
+
+            <!-- 增加图片显示结束 -->
+
+          </ul>
+          <ul class="slide-li op">
+                <li style="margin: 0 10px" class="cur"> 1 </li>
+                <li style="margin: 0 10px"> 2 </li>
+                <li style="margin: 0 10px">3 </li>
+                <li style="margin: 0 10px">4 </li>
+                <li style="margin: 0 10px">5 </li>
+          </ul>
+
+        </div>
+
+        <div class="z_xx">
+
+          <p id="qie">
+            <a class="a_1">促销信息</a><a class="a_2 ca_2">特色活动</a>
+          </p>
+
+
+          <ul id="caa_1" class="clear">
+
+            <!--新闻列表开始-->
+
+                <a href="#" target="_blank">
+                    <li> ①耐克NIKE空军一号低帮小麦色！</li>
+                </a>
+
+                <a href="#" target="_blank">
+                     <li>②选择你的VANS型！  </li>
+                </a>
+
+                <a href="#" target="_blank">
+                    <li>③SuperdryFUN肆欢购！ </li>
+                </a>
+
+                <a href="#" target="_blank">
+                    <li>④哥伦比亚 Columbia男子越野跑鞋 </li>
+                </a>
+
+                <a href="{% url 'wuhuan:adidas' %}" target="_blank">
+                    <li> ⑤阿迪达斯adidas闪购</li>
+                </a>
+
+            <!--新闻列表结束-->
+
+                <a href="{% url 'wuhuan:index' %}" target="_blank">
+                     <li class="gd_1">MORE>> </li>
+                </a>
+
+          </ul>
+
+          <ul id="caa_2" style="display: none" class="clear">
+                <a href="" target="_blank">
+                    <li>①纯正英国品牌Superdry</li>
+                </a>
+
+
+
+                <a href="" target="_blank">
+                     <li>②超级特惠专区，199封顶！</li>
+                </a>
+
+                <a href="#" target="_blank">
+                     <li>③卡尔美 KELME男子宝蓝色足球鞋</li>
+                </a>
+
+
+                <a href="" target="_blank">
+
+                <li>④斐乐 Fila女子中长款羽绒服</li>
+
+                </a>
+
+
+                <a href="" target="_blank">
+                    <li>⑤耐克NIKE360欧文4 黑曜石男子篮球鞋7.9折！</li>
+                </a>
+
+
+                <a href="" target="_blank">
+                    <li class="gd_1">MORE>></li>
+                </a>
+
+          </ul>
+                <a href="" target="_blank">
+                <img  src=" {% static '/images/Small2403.jpg' %}" />
+                </a>
+
+        </div>
+
+                <!--第一区域 end-->
+
+                <!--第二区域-->
+
+                <div class="jie_1">
+
+                <!--第二区域-->
+
+                <div class="j1_le">
+
+                <P class="t_t1">
+
+                <img src="{% static 'imagEs/tt_03.png' %}" /> <a
+
+                href="/brandWall" target="_blank">品牌库</a>
+
+                </P>
+
+                <div class="cp_box">
+
+                <a href="" target="_blank"> <img
+
+                src="{% static 'images/Small2404.jpg' %}" class="im_1" /></a> <a
+
+                href="" target="_blank"> <img
+
+                src="{% static 'images/Small2405.jpg' %}" class="im_2" /></a>
+
+                <ul class="list_1">
+
+               <li><a href='/facetSearch?brandName="Nike"' target="_blank">
+
+                <img src="{% static 'images/a1.jpg' %}" />
+
+                </a></li>
+
+                <li><a href='/facetSearch?brandName="Newbalance"' target="_blank">
+
+                <img src="{% static 'images/a2.jpg' %}" />
+
+                </a></li>
+
+                <li><a href='/facetSearch?brandName="Adidas"' target="_blank">
+
+                <img src="{% static 'images/a3.jpg' %}" />
+
+                </a></li>
+
+                <li><a href='/facetSearch?brandName="Columbia"' target="_blank">
+
+                <img src="{% static 'images/a4.jpg' %}" />
+
+                </a></li>
+
+                <li><a href='/facetSearch?brandName="Lining"' target="_blank">
+
+                <img src="{% static 'images/a5.jpg' %}" />
+
+                </a></li>
+
+                <li><a href='/facetSearch?brandName="Adsc"' target="_blank">
+
+                <img src="{% static 'images/adsclittle.jpg' %}" />
+
+                </a></li>
+
+                <li><a href='/facetSearch?brandName="PUMA"' target="_blank">
+
+                <img src="{% static 'images/a7.jpg' %}" />
+
+                </a></li>
+
+                <li><a href='/facetSearch?brandName="Converse"' target="_blank">
+
+                <img src="{% static 'images/a8.jpg' %}" />
+
+                </a></li>
+
+                <li><a href='/facetSearch?brandName="Timberland"' target="_blank">
+
+                <img src="{% static 'images/timberland.jpg' %}" />
+
+                </a></li>
+
+                <li><a href='/facetSearch?brandName="NIKE360"' target="_blank">
+
+                <img src="{% static 'images/a10.jpg' %}" />
+
+                </a></li>
+
+                <li><a href='/facetSearch?brandName="Mlb"' target="_blank">
+
+                <img src="{% static 'images/a11.jpg' %}" />
+
+                </a></li>
+
+                <li><a href='/facetSearch?brandName="superdry"' target="_blank">
+
+                <img src="{% static 'images/a12.jpg' %}" />
+
+                </a></li>
+
+                <li><a href='/facetSearch?brandName="Adidas%20originals"' target="_blank">
+
+                <img src="{% static 'images/a13.jpg' %}" />
+
+                </a></li>
+
+                <li><a href='/facetSearch?brandName="Anta"' target="_blank">
+
+                <img src="{% static 'images/a14.jpg' %}" />
+
+                </a></li>
+
+                <li><a href='/facetSearch?brandName="Mizuno"' target="_blank">
+
+                <img src="{% static 'images/a15.jpg' %}" />
+
+                </a></li>
+
+                <li><a href='/facetSearch?brandName="DC"' target="_blank">
+
+                <img src="{% static 'images/a16.jpg' %}" />
+
+                </a></li>
+
+                <li><a href='/facetSearch?brandName="Kappa"' target="_blank">
+
+                <img src="{% static 'images/a17.jpg' %}" />
+
+                </a></li>
+
+                <li><a href='/facetSearch?brandName="Skechers"' target="_blank">
+
+                <img src="{% static 'images/a18.jpg' %}" />
+
+                </a></li>
+
+                <li><a href='/facetSearch?brandName="TOREAD"' target="_blank">
+
+                <img src="{% static 'images/a19.jpg' %}" />
+
+                </a></li>
+
+                <li><a href='/facetSearch?brandName="Thenorthface"' target="_blank">
+
+                <img src="{% static 'images/a20_1.jpg' %}" />
+
+                </a></li>
+
+                <li><a href='/facetSearch?brandName="kailas"' target="_blank">
+
+                <img src="{% static 'images/a21_01.jpg' %}" />
+
+                </a></li>
+
+                <li><a href='/facetSearch?brandName="Pony"' target="_blank">
+
+                <img src="{% static 'images/a22.jpg' %}" />
+
+                </a></li>
+
+                <li><a href='/facetSearch?brandName="Fila"' target="_blank">
+
+                <img src="{% static 'images/a23.jpg' %}" />
+
+                </a></li>
+
+                <li><a href='/facetSearch?brandName="yonex"' target="_blank">
+
+                <img src="{% static 'images/yonex.jpg' %}" />
+
+                </a></li>
+
+                <li><a href='/facetSearch?brandName="Northland"' target="_blank">
+
+                <img src="{% static 'images/a25.jpg' %}" />
+
+                </a></li>
+
+                </ul>
+
+                </div>
+
+                </div>
+
+                <!--左边 end-->
+
+
+
+                </div>
+
+                <!--第二区域 end-->
+
+
+
+                <!--第三区域-->
+
+                <div class="jie_2">
+
+                <a href="" target="_blank"> <img
+
+                src="{% static 'images/Small2406.jpg' %}" /></a> <a
+
+                href="" target="_blank"> <img
+
+                src="{% static 'images/Small2407.jpg' %}" /></a> <a
+
+                href="" target="_blank"> <img
+
+                src="{% static 'images/Small2408.jpg' %}" /></a> <a
+
+                href="" target="_blank"> <img
+
+                src="{% static 'images/Small2409.jpg' %}" /></a>
+
+                </div>
+
+                <!--第三区域 end-->
+
+
+
+                <!--第四区域 商品展示-->
+
+              			<div class="jie_3">
+
+
+                <p class="t_t1">
+
+                <img src="{% static 'images/d4_03.png' %}" /> <span class="sp_2">
+
+                <!-- 更多》   如果外链为空，则跳转到首页 -->
+
+             			<a href="http://www.hiwuhuan.com/facetSearch?sort=promotionPrice|asc&text=%E7%9C%BC%E9%95%9C" target="_blank" style="margin-left:20px">更多>></a>
+
+
+
+                <i>|</i>
+
+                <a href="javascript:void(0)"
+
+                onclick="javascript:getUrl('text', 'Puma')">Puma</a>
+
+                <i>|</i>
+
+                <a href="javascript:void(0)"
+
+                onclick="javascript:getUrl('text', '阿迪达斯')">阿迪达斯</a>
+
+
+
+                <i>|</i>
+
+                <a href="javascript:void(0)"
+
+                onclick="javascript:getUrl('text', '抓绒衣')">抓绒衣</a>
+
+
+
+                <i>|</i>
+
+                <a href="javascript:void(0)"
+
+                onclick="javascript:getUrl('text', '跑步鞋')">跑步鞋</a>
+
+
+
+                <i>|</i>
+
+                <a href="javascript:void(0)"
+
+                onclick="javascript:getUrl('text', 'kappa')">kappa</a>
+
+
+
+                <i>|</i>
+
+                <a href="javascript:void(0)"
+
+                onclick="javascript:getUrl('text', '篮球鞋')">篮球鞋</a>
+
+
+
+                <i>|</i>
+
+                <a href="javascript:void(0)"
+
+                onclick="javascript:getUrl('text', 'NIKE')">NIKE</a>
+
+
+
+                </span>
+
+                </p>
+
+
+
+
+                <div class="j3_box">
+
+                <!-- 每个栏目前面的3个活动 start-->
+
+                <ul class="li_1">
+
+
+
+
+                <a href="" target="_blank">
+
+                <li><img src="{% static 'images/Small2410.jpg' %}" />
+
+                </li>
+
+                </a>
+
+                <a href="" target="_blank">
+
+                <li><img src="{% static 'images/Small2411.jpg' %}" />
+
+                </li>
+
+                </a>
+
+                <a href="" target="_blank">
+
+                <li><img src="{% static 'images/Small2412.jpg' %}" />
+
+                </li>
+
+                </a>
+                </ul>
+
+
+
+
+                <ul class="li_2">
+
+
+                {% for goods in goods_1 %}
+                <li><a href="{% url 'wuhuan:detail' goods.id %}" target="_blank">
+
+                <img
+
+                src="{% static 'images/Pic1398187_124301_s.jpg' %}"
+
+                onerror="imgError(this);" /> <span class="sp_1">{{ goods.g_name }}</span>
+
+                <span class="sp_2">专柜价：￥ {{ goods.g_shoppe }}
+
+                </span> <span class="sp_3">五环价：￥ {{ goods.g_price }}
+
+                </span>
+
+                </a></li>
+                {% endfor %}
+
+                </ul>
+
+
+
+                </div>
+
+
+
+                <div class="j3_box_1">
+
+
+
+                <ul class="li_3">
+
+                <li><a href='/facetSearch?brandName="Nike"' target="_blank"> <img
+
+                src="{% static 'images/d1f_01.jpg' %}" />
+
+                </a></li>
+
+                <li><a href='/facetSearch?brandName="Adidas"' target="_blank"> <img
+
+                src="{% static 'images/d1f_02.jpg' %}" />
+
+                </a></li>
+
+                <li><a href='/facetSearch?brandName="Converse"' target="_blank"> <img
+
+                src="{% static 'images/d1f_03.jpg' %}" />
+
+                </a></li>
+
+                <li><a href='/facetSearch?brandName="Newbalance"' target="_blank"> <img
+
+                src="{% static 'images/d1f_04.jpg' %}" />
+
+                </a></li>
+
+                <li><a href='/facetSearch?brandName="vans"' target="_blank"> <img
+
+                src="{% static 'images/d1f_05.jpg' %}" />
+
+                </a></li>
+
+                <li><a href='/facetSearch?brandName="Adidas originals"' target="_blank"> <img
+
+                src="{% static 'images/d1f_06.jpg' %}" />
+
+                </a></li>
+
+                <li><a href='/facetSearch?brandName="Under Armour"' target="_blank"> <img
+
+                src="{% static 'images/d1f_07.jpg' %}" />
+
+                </a></li>
+
+                <li><a href='/facetSearch?brandName="Pony"' target="_blank"> <img
+
+                src="{% static 'images/d1f_08.jpg' %}" />
+
+                </a></li>
+
+                <li>
+
+                  <a href='/facetSearch?brandName="Mizuno"' target="_blank"> <img
+
+                  src="{% static 'images/d1f_09.jpg' %}" /> </a>
+
+                </li>
+
+          </ul>
+
+            <ul class="li_4">
+
+              <P class="hp_1">
+
+                资讯
+
+              </P>
+
+
+
+                <a href="" target="_blank">
+
+                <li>
+
+                  <b>▪</b>轻松出行swisswin旅行用品
+
+                </li> </a>
+
+
+
+                <a href="" target="_blank">
+
+                <li>
+
+                  <b>▪</b>米西卡宽松印花卫衣
+
+                </li> </a>
+
+
+
+                <a href="" target="_blank">
+
+                <li>
+
+                  <b>▪</b>匡威硫化鞋现购买省200
+
+                </li> </a>
+
+
+
+                <a href="" target="_blank">
+
+                <li>
+
+                  <b>▪</b>阿迪达斯运动休闲鞋5折
+
+                </li> </a>
+
+
+
+                <a href="" target="_blank">
+
+                <li>
+
+                  <b>▪</b>彪马休闲运动鞋不只5折
+
+                </li> </a>
+
+
+
+                <a href="" target="_blank">
+
+                <li>
+
+                  <b>▪</b>三叶草ZX700休闲鞋5折
+
+                </li> </a>
+
+
+
+                <a href="" target="_blank">
+
+                <li>
+
+                  <b>▪</b>安踏男子篮球鞋开抢
+
+                </li> </a>
+
+
+
+                <a href="" target="_blank">
+
+                <li>
+
+                  <b>▪</b>HI PANDA休闲长裤5折
+
+                </li> </a>
+
+
+
+            </ul>
+
+
+        </div>
+
+        </div>
+
+
+              			<div class="jie_3">
+
+                <p class="t_t1">
+
+                <img src="{% static 'images/e1_03.png' %}" /> <span class="sp_2">
+
+				<!-- 更多》   如果外链为空，则跳转到首页 -->
+
+                		<a href="{% url 'wuhuan:index' %}" target="_blank" style="margin-left:20px">更多>></a>
+
+
+                <i>|</i>
+
+                <a href="javascript:void(0)"
+
+                onclick="javascript:getUrl('text', 'newbalance')">newbalance</a>
+
+                <i>|</i>
+
+                <a href="javascript:void(0)"
+
+                onclick="javascript:getUrl('text', '阿迪达斯')">阿迪达斯</a>
+
+                <i>|</i>
+
+                <a href="javascript:void(0)"
+
+                onclick="javascript:getUrl('text', 'DC')">DC</a>
+
+
+
+
+
+                <i>|</i>
+
+                <a href="javascript:void(0)"
+
+                onclick="javascript:getUrl('text', '户外鞋')">户外鞋</a>
+
+
+
+
+
+                <i>|</i>
+
+                <a href="javascript:void(0)"
+
+                onclick="javascript:getUrl('text', '匡威')">匡威</a>
+
+
+
+
+
+                <i>|</i>
+
+                <a href="javascript:void(0)"
+
+                onclick="javascript:getUrl('text', '帆布鞋')">帆布鞋</a>
+
+
+
+
+
+                <i>|</i>
+
+                <a href="javascript:void(0)"
+
+                onclick="javascript:getUrl('text', 'NIKE')">NIKE</a>
+
+
+
+
+
+                </span>
+
+                </p>
+
+
+
+
+
+
+
+
+
+                <div class="j3_box">
+
+                <!-- 每个栏目前面的3个活动 start-->
+
+                <ul class="li_1">
+
+
+
+                <a href="" target="_blank">
+
+                <li><img src="{% static 'images/Small2413.jpg' %}" />
+
+                </li>
+
+                </a>
+
+                <a href="" target="_blank">
+
+                <li><img src="{% static 'images/Small2414.jpg' %}" />
+
+                </li>
+
+                </a>
+
+                <a href="" target="_blank">
+
+                <li><img src="{% static 'images/Small2415.jpg' %}" />
+
+                </li>
+
+                </a>
+
+
+                </ul>
+
+
+
+
+                <ul class="li_2">
+
+
+                {% for goods in goods_2 %}
+                <li><a href="{% url 'wuhuan:detail' goods.id %}" target="_blank">
+
+                <img
+
+                src="{% static 'images/Pic1303554_128343_s.jpg' %}"
+
+                onerror="imgError(this);" /> <span class="sp_1">{{ goods.g_name }}</span>
+
+                <span class="sp_2">专柜价：￥ {{ goods.g_shoppe }}
+
+                </span> <span class="sp_3">五环价：￥ {{ goods.g_price }}
+
+                </span>
+
+                </a></li>
+                {% endfor %}
+
+                </ul>
+
+
+
+                </div>
+
+
+
+                <div class="j3_box_1">
+
+
+
+
+
+          <!-- 资讯 3  -->
+
+
+
+            <ul class="li_3">
+
+              <li>
+
+                <a href='/facetSearch?brandName="Mlb"' target="_blank"> <img
+
+                src="{% static 'images/d2f_01.jpg' %}" /> </a>
+
+              </li>
+
+              <li>
+
+                <a href='/facetSearch?brandName="Adsc"' target="_blank"> <img
+
+                src="{% static 'images/d2f_02.jpg' %}" /> </a>
+
+              </li>
+
+              <li>
+
+                <a href='/facetSearch?brandName="LEVI’S"' target="_blank"> <img
+
+                src="{% static 'images/d2f_03.jpg' %}" /> </a>
+
+              </li>
+
+              <li>
+
+                <a href='/facetSearch?brandName="superdry"' target="_blank"> <img
+
+                src="{% static 'images/d2f_04.jpg' %}" /> </a>
+
+              </li>
+
+              <li>
+
+                <a href='/facetSearch?brandName="Kappa"' target="_blank"> <img
+
+                src="{% static 'images/d2f_05.jpg' %}" /> </a>
+
+              </li>
+
+              <li>
+
+                <a href='/facetSearch?brandName="Hi Panda"' target="_blank"> <img
+
+                src="{% static 'images/d2f_06.jpg' %}" /> </a>
+
+              </li>
+
+              <li>
+
+                <a href='/facetSearch?brandName="PUMA"' target="_blank"> <img
+
+                src="{% static 'images/d2f_07.jpg' %}" /> </a>
+
+              </li>
+
+              <li>
+
+                <a href='/facetSearch?brandName="Newbalance"' target="_blank"> <img
+
+                src="{% static 'images/d2f_08.jpg' %}" /> </a>
+
+              </li>
+
+              <li>
+
+                <a href='/facetSearch?brandName="NIKE360"' target="_blank"> <img
+
+                src="{% static 'images/d2f_09.jpg' %}" /> </a>
+
+              </li>
+
+            </ul>
+
+
+
+
+            <ul class="li_4">
+
+              <P class="hp_1">
+
+                资讯
+
+              </P>
+
+
+
+
+
+                  <a href="" target="_blank">
+
+                  <li>
+
+                    <b>▪</b>阿迪达斯针织运动长裤
+
+                  </li> </a>
+
+
+
+                  <a href="" target="_blank">
+
+                  <li>
+
+                    <b>▪</b>耐克NIKE秋冬上新
+
+                  </li> </a>
+
+
+
+                  <a href="" target="_blank">
+
+                  <li>
+
+                    <b>▪</b>男子MAX AIR运动休闲背包
+
+                  </li> </a>
+
+
+
+                  <a href="" target="_blank">
+
+                  <li>
+
+                    <b>▪</b>MLB街头服装品牌
+
+                  </li> </a>
+
+
+
+                  <a href="" target="_blank">
+
+                  <li>
+
+                    <b>▪</b>极度干燥 superdry外套
+
+                  </li> </a>
+
+
+
+                  <a href="" target="_blank">
+
+                  <li>
+
+                    <b>▪</b>vans女款板鞋高帮帆布鞋
+
+                  </li> </a>
+
+
+
+                  <a href="" target="_blank">
+
+                  <li>
+
+                    <b>▪</b>匡威 Converse低帮小白鞋
+
+                  </li> </a>
+
+
+
+                  <a href="" target="_blank">
+
+                  <li>
+
+                    <b>▪</b>Kappa运动帽衫休闲卫衣
+
+                  </li> </a>
+
+
+
+                  <a href="" target="_blank">
+
+                  <li>
+
+                    <b>▪</b>匡威 Converse2018新款星箭低帮时尚休闲鞋
+
+                  </li> </a>
+
+
+
+                  <a href="" target="_blank">
+
+                  <li>
+
+                    <b>▪</b>adidas三叶草休闲鞋3折抢
+
+                  </li> </a>
+
+
+            </ul>
+
+
+          <!--  -->
+
+        </div>
+
+        </div>
+
+
+              			<div class="jie_3">
+
+
+                <p class="t_t1">
+
+                <img src="{% static 'images/f1_07.png' %}" /> <span class="sp_2">
+
+				<!-- 更多》   如果外链为空，则跳转到首页 -->
+
+             			<a href="" target="_blank" style="margin-left:20px">更多>></a>
+
+                <i>|</i>
+
+                <a href="javascript:void(0)"
+
+                onclick="javascript:getUrl('text', 'newbalance')">newbalance</a>
+
+
+
+
+
+                <i>|</i>
+
+                <a href="javascript:void(0)"
+
+                onclick="javascript:getUrl('text', '阿迪达斯')">阿迪达斯</a>
+
+
+
+
+
+                <i>|</i>
+
+                <a href="javascript:void(0)"
+
+                onclick="javascript:getUrl('text', '斯凯奇')">斯凯奇</a>
+
+
+
+
+
+                <i>|</i>
+
+                <a href="javascript:void(0)"
+
+                onclick="javascript:getUrl('text', '运动鞋')">运动鞋</a>
+
+
+
+
+
+                <i>|</i>
+
+                <a href="javascript:void(0)"
+
+                onclick="javascript:getUrl('text', 'kappa')">kappa</a>
+
+
+
+
+
+                <i>|</i>
+
+                <a href="javascript:void(0)"
+
+                onclick="javascript:getUrl('text', '运动裤')">运动裤</a>
+
+
+
+
+
+                <i>|</i>
+
+                <a href="javascript:void(0)"
+
+                onclick="javascript:getUrl('text', 'NIKE')">NIKE</a>
+
+
+
+
+
+                </span>
+
+                </p>
+
+
+
+
+
+                <div class="j3_box">
+
+                <!-- 每个栏目前面的3个活动 start-->
+
+                <ul class="li_1">
+
+
+                <a href="" target="_blank">
+
+                <li><img src="{% static 'images/Small2416.jpg' %}" />
+
+                </li>
+
+                </a>
+
+                <a href="" target="_blank">
+
+                <li><img src="{% static 'images/Small2417.jpg' %}" />
+
+                </li>
+
+                </a>
+
+                <a href="" target="_blank">
+
+                <li><img src="{% static 'images/Small2418.jpg' %}" />
+
+                </li>
+
+                </a>
+
+                </ul>
+
+
+
+                <ul class="li_2">
+
+
+                {% for goods in goods_3 %}
+                <li><a href="{% url 'wuhuan:detail' goods.id %}" target="_blank">
+
+                <img
+
+                src="{% static 'images/Pic1336153_103519_s.jpg' %}"
+
+                onerror="imgError(this);" /> <span class="sp_1">{{ goods.g_name }}</span>
+
+                <span class="sp_2">专柜价：￥ g{{ goods.g_shoppe }}
+
+                </span> <span class="sp_3">五环价：￥ {{ goods.g_price }}
+
+                </span>
+
+                </a></li>
+                {% endfor %}
+
+                </ul>
+
+
+
+                </div>
+
+
+
+                <div class="j3_box_1">
+
+
+
+
+
+          <!-- 资讯 3  -->
+
+
+
+          <!-- 686end -->
+
+          <!-- 资讯2 607 -->
+
+
+
+            <ul class="li_3">
+
+              <li>
+
+                <a href='/facetSearch?brandName="Thenorthface"' target="_blank"> <img
+
+                src="{% static 'images/d3f_01.jpg' %}" /> </a>
+
+              </li>
+
+              <li>
+
+                <a href='/facetSearch?brandName="Northland"' target="_blank"> <img
+
+                src="{% static 'images/d3f_02.jpg' %}" /> </a>
+
+              </li>
+
+              <li>
+
+                <a href='/facetSearch?brandName="TOREAD"' target="_blank"> <img
+
+                src="{% static 'images/d3f_03.jpg' %}" /> </a>
+
+              </li>
+
+              <li>
+
+                <a href='/facetSearch?brandName="kailas"' target="_blank"> <img
+
+                src="{% static 'images/d3f_04.jpg' %}" /> </a>
+
+              </li>
+
+              <li>
+
+                <a href='/facetSearch?brandName="极星"' target="_blank"> <img
+
+                src="{% static 'images/d3f_05.jpg' %}" /> </a>
+
+              </li>
+
+              <li>
+
+                <a href='/facetSearch?brandName="Timberland"' target="_blank"> <img
+
+                src="{% static 'images/d3f_06.jpg' %}" /> </a>
+
+              </li>
+
+              <li>
+
+                <a href='/facetSearch?brandName="Columbia"' target="_blank"> <img
+
+                src="{% static 'images/d3f_07.jpg' %}" /> </a>
+
+              </li>
+
+              <li>
+
+                <a href='/facetSearch?brandName="Jack Wolfskin"' target="_blank"> <img
+
+                src="{% static 'images/d3f_08.jpg' %}" /> </a>
+
+              </li>
+
+              <li>
+
+                <a href='/facetSearch?brandName="Scaler"' target="_blank"> <img
+
+                src="{% static 'images/d3f_09.jpg' %}" /> </a>
+
+              </li>
+
+            </ul>
+
+
+
+
+            <ul class="li_4">
+
+              <P class="hp_1">
+
+                资讯
+
+              </P>
+
+
+
+                <a href="" target="_blank">
+
+                <li>
+
+                  <b>▪</b>SWISSWIN黑色双肩包4折
+
+                </li> </a>
+
+
+
+                <a href="" target="_blank">
+
+                <li>
+
+                  <b>▪</b>TOREAD探路者正品迷彩
+
+                </li> </a>
+
+
+
+                <a href="" target="_blank">
+
+                <li>
+
+                  <b>▪</b>探路者户外装备3.6折起！
+
+                </li> </a>
+
+
+
+                <a href="" target="_blank">
+
+                <li>
+
+                  <b>▪</b>凯乐石 kailas-全时冲锋衣
+
+                </li> </a>
+
+
+
+                <a href=" " target="_blank">
+
+                <li>
+
+                  <b>▪</b>哥伦比亚男子冲锋衣
+
+                </li> </a>
+
+
+            </ul>
+
+
+        </div>
+
+        </div>
+
+        <div class="jie_3" style="height: 461px;">
+
+                <p class="t_t1">
+
+                <img src="{% static 'images/g1_11.png' %}" /> <span class="sp_2">
+
+			    <a href="" target="_blank" style="margin-left:20px">更多>></a>
+
+
+
+                <i>|</i>
+
+                <a href="javascript:void(0)"
+
+                onclick="javascript:getUrl('text', 'newbalance')">newbalance</a>
+
+
+                <i>|</i>
+
+                <a href="javascript:void(0)"
+
+                onclick="javascript:getUrl('text', '阿迪达斯')">阿迪达斯</a>
+
+
+                <i>|</i>
+
+                <a href="javascript:void(0)"
+
+                onclick="javascript:getUrl('text', '户外鞋')">户外鞋</a>
+
+                <i>|</i>
+
+                <a href="javascript:void(0)"
+
+                onclick="javascript:getUrl('text', '篮球鞋')">篮球鞋</a>
+
+
+                <i>|</i>
+
+                <a href="javascript:void(0)"
+
+                onclick="javascript:getUrl('text', 'kappa')">kappa</a>
+
+                <i>|</i>
+
+                <a href="javascript:void(0)"
+
+                onclick="javascript:getUrl('text', '短袖')">短袖</a>
+
+                <i>|</i>
+
+                <a href="javascript:void(0)"
+
+                onclick="javascript:getUrl('text', 'NIKE')">NIKE</a>
+
+
+
+
+
+                </span>
+
+                </p>
+
+                <div class="j3_box_2">
+
+                <a href=""><img
+
+                src="{% static 'images/Small2419.gif' %}" /></a>
+
+                </div>
+
+        <div class="j3_box">
+                <!-- 每个栏目前面的3个活动 start-->
+                <ul class="li_1">
+
+                </ul>
+                <ul class="li_2">
+                {% for goods in goods_4 %}
+                <li><a href="{% url 'wuhuan:detail' goods.id %}" target="_blank">
+
+                <img
+
+                src="{% static 'images/Pic1364601_115158_s.jpg' %}"
+
+                onerror="imgError(this);" /> <span class="sp_1">{{ goods.g_name }}</span>
+
+                <span class="sp_2">专柜价：￥ {{ goods.g_shoppe }}
+
+                </span> <span class="sp_3">五环价：￥ {{ goods.g_price }}
+
+                </span>
+
+                </a></li>
+                {% endfor %}
+
+                </ul>
+
+                </div>
+
+
+                <div class="j3_box_1">
+                </div>
+        </div>
+
+      </div>
+
+    </div>
+
+
+{% endblock content %}
+
+
+
+

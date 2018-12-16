@@ -1,0 +1,573 @@
+{% load static %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <TITLE>五环体育网上商城</TITLE>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'css/allnav.css' %}" rel="stylesheet" type="text/css"/>
+    <script src="{% static 'js/jquery-1.7.1.min.js' %}"></script>
+    <script src="{% static 'js/jquery.md5.js' %}"></script>
+    <script src="{% static 'js/jquery.cookies.2.2.0.min.js' %}"></script>
+    <script src="{% static 'js/mootools-core.js' %}"></script>
+    <script src="{% static 'js/mediabox.js' %}"></script>
+    <script src="{% static 'js/banner.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/query.js' %}"></script>
+    <script src="{% static 'js/orderCommit.js' %}"></script>
+    <link rel="Shortcut icon" href="{% static 'images/favicon.ico' %}"/>
+    {% block link_script %}{% endblock %}
+</head>
+<body>
+<div id="header">
+    <div class="top">
+        <p class="topbox">
+                <span class="s_l">
+                    <a href="javascript:void(0);" class="a_1">收藏五环</a> <a href="#" class="a_2">设为首页</a>
+                </span>
+            <span class="s_r">
+                    <a id="welcome1">您好!欢迎来到五环！</a>
+                    <span id="welcome" class="welcome">
+                        {% if request.session.login_user %}
+                            <a class="lo" href="{% url 'wuhuan:login' %}" target="_self">{{ request.session.login_user.username }}</a>
+                            <a class='a re' href="{% url 'wuhuan:quit' %}" target="_self">[退出登录]</a>
+
+                        {% else %}
+                            <a class="a re" href="{% url 'wuhuan:login' %}" target="_self">[登录]</a>
+                            <a class="a re" href="{% url 'wuhuan:register' %}" target="_self">[免费注册]</a>
+                        {% endif %}
+
+
+                    </span>
+
+                    <span>
+                        <a href="javascript:openChat('https://care3.live800.com/live800/chatClient/chatbox.jsp?companyID=8971&configID=2367&k=1')"
+                           class="a a_2" style="display:block;">在线客服</a>
+
+                        <a href="javascript:openChat('https://care3.live800.com/live800/chatClient/chatbox.jsp?companyID=8971&configID=2367&k=1')"
+                           class="a a_3"><b>(029)4008-998-968</b></a>
+                    </span>
+                </span>
+        </p>
+    </div>
+    <!--middle-->
+    <div class="mid">
+
+        <!--logol-->
+
+        <div id="logol">
+            <a href="/index.html">
+                <img  width="216px" height="60px" src="{% static 'images/mylog.jpg' %}"/>
+            </a>
+            <img class="im_1" src="{% static 'images/zhe_03.jpg' %}"/>
+        </div>
+
+        <!--logol end-->
+
+        <!--text-->
+
+        <div id="txt">
+            <form method="post" action="/facetSearch" id="yw2">
+                <input name="search" type="text" class="txt" onclick="this.value=''" value="跑步鞋"/>
+                <input type="image" id="searchSubmit" class="ss" src="{% static 'images/sou.png' %}"/>
+            </form>
+
+            <p class="clear">
+                <a href="/facetSearch?text=Puma" title="Puma" target="_blank"><span>Puma</span></a>
+                <a href="/facetSearch?text=阿迪达斯" title="阿迪达斯" target="_blank"><span>阿迪达斯</span></a>
+                <a href="/facetSearch?text=冲锋衣" title="冲锋衣" target="_blank"><span>冲锋衣</span></a>
+                <a href="/facetSearch?text=运动鞋" title="运动鞋" target="_blank"><span>运动鞋</span></a>
+                <a href="/facetSearch?text=Newbalance" title="Newbalance" target="_blank"><span>Newbalance</span></a>
+                <a href="/facetSearch?text=篮球鞋" title="篮球鞋" target="_blank"><span>篮球鞋</span></a>
+                <a href="/facetSearch?text=NIKE" title="NIKE" target="_blank"><span>NIKE</span></a>
+            </p>
+        </div>
+        <!--mid right-->
+        <a href="/cart" class="gw">购物车<b id="cartss">0</b>件 </a>
+        <!--mid right end-->
+
+    </div>
+    <!--nav-->
+    <div id="nav">
+        <div class="navbox">
+            <a href="#">
+                <div class="sort-ti">全部商品分类</div>
+            </a>
+            <ul class="nav">
+                <li class="index">
+                    <a href="{% url 'wuhuan:index' %}" title="首页" target="_self">
+                        <span>首页</span>
+                    </a>
+                </li>
+
+{#                <li class="exd">#}
+{#                    <a href="/channel/2.html" title="男子" class="exable" target="_blank">#}
+{#                        <span class="ico_man">男子</span>#}
+{#                    </a>#}
+{#                </li>#}
+{##}
+{#                <li class="exd">#}
+{#                    <a href="/channel/3.html"#}
+{#                       title="女子" class="exable" target="_blank"><span#}
+{#                            class="ico_lady">女子</span></a>#}
+{#                </li>#}
+
+                <li>
+                    <a href="{% url 'wuhuan:limtime' %}" title="限时特卖" target="_self" style="padding:0;"> <img
+                            style="height: 45px;width:auto;" src="{% static 'images/xstm_logo.png' %}"/></a>
+                </li>
+
+                <li>
+                    <a href="{% url 'wuhuan:adidas' %}" title="阿迪达斯旗舰店" target="_self"> 阿迪达斯旗舰店 </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'wuhuan:nick' %}" title="耐克旗舰店" target="_self"> 耐克旗舰店 </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'wuhuan:kuangwu' %}" title="匡威旗舰店" target="_self">匡威旗舰店 </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'wuhuan:sikaiqi' %}" title="斯凯奇旗舰店" target="_self"> 斯凯奇旗舰店 </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    <!--nav end-->
+</div>
+<!--header end-->
+</body>
+
+{#中间部分#}
+{% block content %}
+{% endblock content %}
+<!--foot-->
+<div id="box_1">
+
+    <table cellpadding="0" cellspacing="0" class="jie_4">
+        <tbody>
+        <tr>
+            <td><a href='/facetSearch?brandName="Nike"' target="_blank"> <img
+                    src="{% static 'images/h1_a1.jpg' %}"/></a></td>
+            <td><a href='/facetSearch?brandName="Newbalance"' target="_blank"> <img
+                    src="{% static 'images/h1_a2.jpg' %}"/></a></td>
+            <td><a href='/facetSearch?brandName="Adidas"' target="_blank"> <img src="{% static 'images/h1_a3.jpg' %}"/></a>
+            </td>
+            <td><a href='/facetSearch?brandName="Thenorthface"' target="_blank"> <img
+                    src="{% static 'images/h1_a4.jpg' %}"/></a></td>
+            <td><a href='/facetSearch?brandName="Lining"' target="_blank"> <img src="{% static 'images/h1_a5.jpg' %}"/></a>
+            </td>
+            <td><a href='/facetSearch?brandName="Under%20Armour"' target="_blank"> <img
+                    src="{% static 'images/h1_a6.jpg' %}"/></a></td>
+            <td><a href='/facetSearch?brandName="PUMA"' target="_blank"> <img
+                    src="{% static 'images/h1_a7.jpg' %}"/></a></td>
+            <td><a href='/facetSearch?brandName="Converse"' target="_blank"> <img
+                    src="{% static 'images/h1_a8.jpg' %}"/></a></td>
+            <td><a href='/facetSearch?brandName="vans"' target="_blank"> <img
+                    src="{% static 'images/h1_a9.jpg' %}"/></a></td>
+            <td><a href='/facetSearch?brandName="Fila"' target="_blank"> <img
+                    src="{% static 'images/h1_a10.jpg' %}"/></a></td>
+        </tr>
+
+        <tr>
+            <td><a href='/facetSearch?brandName="Mlb"' target="_blank"> <img
+                    src="{% static 'images/h1_a11.jpg' %}"/></a></td>
+            <td><a href='/facetSearch?brandName="kailas"' target="_blank"> <img src="{% static 'images/h1_a12.jpg' %}"/></a>
+            </td>
+            <td><a href='/facetSearch?brandName="Adidas%20originals"' target="_blank"> <img
+                    src="{% static 'images/h1_a13.jpg' %}"/></a></td>
+            <td><a href='/facetSearch?brandName="Anta"' target="_blank"> <img
+                    src="{% static 'images/h1_a14.jpg' %}"/></a></td>
+            <td><a href='/facetSearch?brandName="Mizuno"' target="_blank"> <img src="{% static 'images/h1_a15.jpg' %}"/></a>
+            </td>
+            <td><a href='/facetSearch?brandName="Columbia"' target="_blank"> <img
+                    src="{% static 'images/h1_a16.jpg' %}"/></a></td>
+            <td><a href='/facetSearch?brandName="Kappa"' target="_blank"> <img src="{% static 'images/h1_a17.jpg' %}"/></a>
+            </td>
+            <td><a href='/facetSearch?brandName="Jack Wolfskin"' target="_blank"> <img
+                    src="{% static 'images/h1_a18.jpg' %}"/></a></td>
+            <td><a href='/facetSearch?brandName="TOREAD"' target="_blank"> <img src="{% static 'images/h1_a19.jpg' %}"/></a>
+            </td>
+            <td><a href='/facetSearch?brandName="Adsc"' target="_blank"> <img
+                    src="{% static 'images/h1_a20.jpg' %}"/></a></td>
+        </tr>
+
+        </tbody>
+    </table>
+
+    <ul class="jie_5">
+        <p class="hp_1">
+            <span>商品分类</span>
+        </p>
+        <li>
+            <p class="p_1">运动产品</p>
+            <img src="{% static 'images/foot_01.jpg' %}"/>
+            <p class="p_2">
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '耐克')" target="_blank">耐克</a>
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '运动鞋')" target="_blank">运动鞋</a>
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '阿迪达斯')" target="_blank">阿迪达斯</a>
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '卫衣')" target="_blank">卫衣</a>
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '跑步鞋')" target="_blank">跑步鞋</a>
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '李宁')" target="_blank">李宁</a>
+            </p>
+        </li>
+
+        <li>
+            <p class="p_1">潮流休闲</p>
+            <img src="{% static 'images/foot_02.jpg' %}"/>
+            <p class="p_2">
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', 'MLB')" target="_blank">MLB</a>
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '帆布鞋')" target="_blank">帆布鞋</a>
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '上衣')" target="_blank">上衣</a>
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '匡威')" target="_blank">匡威</a>
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '帽子')" target="_blank">帽子</a>
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '牛仔裤')" target="_blank">牛仔裤</a>
+            </p>
+        </li>
+
+        <li>
+            <p class="p_1">男子</p>
+            <img src="{% static 'images/foot_03.jpg' %}"/>
+            <p class="p_2">
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '篮球鞋')" target="_blank">篮球鞋</a>
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '运动裤')" target="_blank">运动裤</a>
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', 'T恤')" target="_blank">T恤</a>
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '外套')" target="_blank">外套</a>
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '彪马')" target="_blank">彪马</a>
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '安踏')" target="_blank">安踏</a>
+            </p>
+        </li>
+
+        <li>
+            <p class="p_1">女子 </p>
+            <img src="{% static 'images/foot_04.jpg' %}"/>
+            <p class="p_2">
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '运动鞋')" target="_blank">运动鞋</a>
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '羽绒服')" target="_blank">羽绒服</a>
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '万斯')" target="_blank">万斯</a>
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '卡帕')" target="_blank">卡帕</a>
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '衬衫')" target="_blank">衬衫</a>
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '外套')" target="_blank">外套</a>
+            </p>
+        </li>
+
+        <li>
+            <p class="p_1">户外用品 </p>
+            <img src="{% static 'images/foot_05.jpg' %}"/>
+            <p class="p_2">
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '冲锋衣')" target="_blank">冲锋衣</a>
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '哥伦比亚')" target="_blank">哥伦比亚</a>
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '抓绒衣')" target="_blank">抓绒衣</a>
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '乐斯菲斯')" target="_blank">乐斯菲斯</a>
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '登山鞋')" target="_blank">登山鞋</a>
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '探路者')" target="_blank">探路者</a>
+            </p>
+        </li>
+        <li>
+            <p class="p_1">箱包配件</p>
+            <img src="{% static 'images/foot_06.jpg' %}"/>
+            <p class="p_2">
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', 'SWISSWIN')"
+                   target="_blank">SWISSWIN</a>
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '运动包')" target="_blank">运动包</a>
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '户外包')" target="_blank">户外包</a>
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '眼镜')" target="_blank">眼镜</a>
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '袜子')" target="_blank">袜子</a>
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '旅行包')" target="_blank">旅行包</a>
+            </p>
+        </li>
+
+        <li>
+            <p class="p_1">上衣</p>
+            <img src="{% static 'images/foot_07.jpg' %}"/>
+            <p class="p_2">
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '运动服')" target="_blank">运动服</a>
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '夹克')" target="_blank">夹克</a>
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', 'POLO衫')" target="_blank">POLO衫</a>
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '棉服')" target="_blank">棉服</a>
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '卫衣')" target="_blank">卫衣</a>
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '美津浓')" target="_blank">美津浓</a>
+            </p>
+        </li>
+
+        <li>
+            <p class="p_1">裤装</p>
+            <img src="{% static 'images/foot_08.jpg' %}"/>
+            <p class="p_2">
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '长裤')" target="_blank">长裤</a>
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '牛仔裤')" target="_blank">牛仔裤</a>
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '卫裤')" target="_blank">卫裤</a>
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '冲锋裤')" target="_blank">冲锋裤</a>
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '休闲裤')" target="_blank">休闲裤</a>
+                <a href="javascript:void(0)" onclick="javascript:getUrl('text', '短裤')" target="_blank">短裤</a>
+            </p>
+        </li>
+    </ul>
+</div>
+
+
+<div class="ba_11">
+
+    <a href="#"><img src="{% static 'images/Small2567.jpg' %}"/></a>
+
+</div>
+
+<div id="foot">
+
+    <div class="footbox">
+
+        <ul class="foot_li">
+
+            <li>
+
+                <span>新手帮助</span>
+
+                <a href="{% static 'static/11.js' %}p" target="_blank">新用户注册</a>
+
+                <a href="{% static 'static/12.js' %}p" target="_blank">如何购物</a>
+
+                <a href="{% static 'static/13.js' %}p" target="_blank">交易条款</a>
+
+                <a href="{% static 'static/14.js' %}p" target="_blank">会员手册</a>
+
+            </li>
+
+            <li>
+
+                <span>支付方式</span>
+
+                <a href="{% static 'static/21.js' %}p" target="_blank">发票制度</a>
+
+                <a href="{% static 'static/22.js' %}p" target="_blank">支付宝</a>
+
+                <a href="{% static 'static/23.js' %}p" target="_blank">银联</a>
+
+            </li>
+
+            <li>
+
+                <span>物流配送</span>
+
+                <a href="{% static 'static/31.js' %}p" target="_blank">配送时间</a>
+
+                <a href="{% static 'static/32.js' %}p" target="_blank">配送范围</a>
+
+                <a href="{% static 'static/33.js' %}p" target="_blank">配送方式</a>
+
+                <a href="{% static 'static/34.js' %}p" target="_blank">签收须知</a>
+
+            </li>
+
+            <li>
+
+                <span>售后服务</span>
+
+                <a href="{% static 'static/41.js' %}p" target="_blank">退换货须知</a>
+
+                <a href="{% static 'static/42.js' %}p" target="_blank">退换货办理流程</a>
+
+            </li>
+
+            <li>
+
+                <span>关于五环</span>
+
+                <a href="{% static 'static/51.js' %}p" target="_blank">联系我们</a>
+
+                <a href="{% static 'static/52.js' %}p" target="_blank">公司介绍</a>
+
+            </li>
+
+        </ul>
+
+
+        <UL class="foot_li1">
+
+            <li style="border-right: solid 2px #828490">
+
+                <P>
+
+                    客服中心
+
+                    <br/>
+
+                    <b>(029)4008-998-968</b>
+
+                    <b>(029)8835&nbsp;2905</b>
+
+                </P>
+
+                <P>
+
+                    <span>服务时间：9:30-20:30</span>
+
+            </li>
+
+            <li>
+
+                <p style="text-align: center">
+
+                    官方微博
+
+                </p>
+
+                <a href="http://weibo.com/whsports"
+
+                   target="_blank"> <img src="{% static 'images/wb_03.jpg' %}"/></a>
+
+            </li>
+
+            <li>
+
+                <p style="text-align: center">
+
+                    官方微信
+
+                </p>
+
+                <a href="#"
+
+                   target="_blank"> <img src="{% static 'images/wx_03.jpg' %}"/></a>
+
+            </li>
+
+        </UL>
+
+    </div>
+
+</div>
+<div id="foot1">
+
+    <div class="footbox2">
+
+        <p class="hp">
+
+            <span><img src="{% static 'images/sb_06.jpg' %}"/></span><i>|</i>
+
+            <span><img src="{% static 'images/sb_08.jpg' %}"/></span><i>|</i>
+
+            <span><img src="{% static 'images/sb_10.jpg' %}"/></span><i>|</i>
+
+            <span><img src="{% static 'images/sb_12.jpg' %}"/></span><i>|</i>
+
+            <span><img src="{% static 'images/sb_03.jpg' %}" style="display:none;"/></span>
+
+        </p>
+
+
+        <div style="margin:0 auto;width:1200px;">
+
+            <p class="hp_2" style="float:left;">
+
+                <a href="{% static 'static/52.js' %}p" target="_blank">公司介绍</a><i>|</i>
+
+                <a href="{% static 'static/51.js' %}p" target="_blank">联系我们</a><i>|</i>
+
+                <a href="{% static 'static/51.js' %}p" target="_blank">客服中心</a><i>|</i>
+
+                <a href="{% static 'static/51.js' %}p" target="_blank">友情联盟</a><i>|</i>
+
+                <a href="{% static 'static/51.js' %}p" target="_blank">网站中心</a><i>|</i>
+
+                <a href="{% static 'static/51.js' %}p" target="_blank">帮助中心</a>
+
+            </p>
+
+            <span style="text-align:center; margin:0 auto; font-size:12px;float:left;">Copyright 2012-2013 HiWuHuan.com All Rights Reserved 陕西五环胜道运动产业开发有限公司 029-88352905   <a
+                    href="http://www.miibeian.gov.cn/" target="_blank">陕ICP备10200812号-2</a></span>
+
+            <span><li style="margin-top:-40px;width: 65px;height: 70px; float:left; margin-left:15px;"><script
+                    type="text/javascript"
+                    src="http://wljg.snaic.gov.cn/scripts/businessLicense.js?id=61000000000084"></script></li></span>
+
+            <p style="float:right;"><a href="http://www.e-sku.net" target="_blank" style="font-size: 12px;">技术支持
+                衡和易商</a></p>
+
+
+        </div>
+
+
+    </div>
+
+</div>
+<!--foot end-->
+<div class="slide_menu">
+
+    <div class="right_slide_1">
+
+        <a href="#" target="_blank">
+
+            <span class="icon"><img src="{% static 'images/1.png' %}"/></span>
+
+            <span class="text">个人中心</span>
+
+            <div style="clear: both;"></div>
+
+        </a>
+
+    </div>
+
+    <div class="right_slide_1">
+
+        <a href="#" target="_blank">
+
+            <span class="icon"><img src="{% static 'images/2.png' %}"/></span>
+
+            <span class="text">购物车</span>
+
+            <div style="clear: both;"></div>
+
+        </a>
+
+    </div>
+
+    <div class="right_slide_1">
+
+        <a href="#" target="_blank">
+
+            <span class="icon"><img src="{% static 'images/3.png' %}"/></span>
+
+            <span class="text">在线客服</span>
+
+            <div style="clear: both;"></div>
+
+        </a>
+
+    </div>
+
+    <div class="right_slide_1">
+
+        <a href="javascript:void(0)">
+
+            <span class="icon"><img src="{% static 'images/4.png' %}"/></span>
+
+            <span class="text" style="width: 110px;background: rgba(255,255,255,0);padding: 0;"><img
+                    src="{% static 'images/6.png' %}"/></span>
+
+            <div style="clear: both;"></div>
+
+        </a>
+
+    </div>
+
+    <div id="backToTop" class="right_slide_1">
+
+        <a href="javascript:void(0);" onfocus="this.blur();">
+
+            <span class="icon"><img src="{% static 'images/5.png' %}"/></span>
+
+            <span class="text">返回顶部</span>
+
+            <div style="clear: both;"></div>
+
+        </a>
+
+    </div>
+
+</div>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% load static  %}
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="{% static 'login_reg/css/login.css' %}"/>
+	</head>
+	<body>
+		<div class="logo">
+			<div class="upPart">
+				<img src="{% static 'login_reg/img/logo.png' %}"/>
+				<img src="{% static 'login_reg/img/jf_bg1.png' %}"/>
+			</div>
+			<div class="middlePart">
+				<div class="logonPage">
+					<div class="vipLogon sameFont">会员登录</div>
+					<div class="vipLogin sameFont"><a href="{% url 'wuhuan:register' %}">会员注册</a></div>
+					<form action="{% url 'wuhuan:login' %}" method="post">
+                        {% csrf_token %}
+						<div class="username">
+							<div class="bguser"></div>
+							<input id = "username" name="username" type="text" placeholder="用户名" />
+						</div>
+						<span id="misUsername"></span>
+						<div class="userpass">
+							<div class="bgpass"></div>
+							<input id="userpass" name="userpass" type="password" placeholder="密码" />
+                            <h5 style="color:red">{{ msg }}</h5>
+
+						</div>
+						<span id="misUserpass"></span>
+						<a href="#">忘记密码</a>
+						<input class="submitIn" type="submit" value="登录"/>
+					</form>
+					<p>合作网站账号登录</p>
+					<div class="logonImg">
+						<a class="qqImg" href=""></a>
+						<a class="webImg" href=""></a>
+						<img src="{% static 'login_reg/img/metasolo_logo.png' %}"/>
+					</div>
+				</div>
+			</div>
+			<div class="downPart">
+				<p>&copy;2005-2018 五环体育 版权所有，并保留所有权利。<br/>ICP备案证书号:京ICP备05062157号</p>
+			</div>
+		</div>
+		<div class="recode">
+            <img id="rqHover" src="{% static 'login_reg/img/rqcode-hover.png' %}"/>
+			<img id="qrcode" src="{% static 'login_reg/img/qrcode.png' %}"/>
+		</div>
+	</body>
+</html>
+<script type="text/javascript" src="{% static 'login_reg/js/jquery-3.1.1.min.js' %}" ></script>

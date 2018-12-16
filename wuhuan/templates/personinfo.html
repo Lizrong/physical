@@ -1,0 +1,164 @@
+{% extends 'public.html' %}
+{% load static %}
+
+{% block content %}
+<div id="box">
+      <div class="jie_15">
+        <p class="hp_1">
+          <span class="sp_1"> <a href="index.html" target="_blank">首页</a> <i>></i><b>会员中心</b> </span>
+        </p>
+        <ul class="le_1">
+  <p class="hp_2">
+    会员中心
+  </p>
+  <li class="hover">
+    <p class="hp">
+      新手帮助
+    </p><a class="a_1"></a>
+    <dl>
+      <a href="/myOrder">
+      <dd id="myOrder">
+        我的订单
+      </dd></a>
+      <a href="/myDeli">
+      <dd id="myDeli">
+        收货地址
+      </dd></a>
+    </dl>
+  </li>
+  <li class="hover">
+    <p class="hp">
+      会员中心
+    </p><a class="a_1"></a>
+    <dl>
+      <a href="/myshop">
+      <dd id="myshop">
+        个人信息
+      </dd></a>
+      <a href="/myfav">
+      <dd id="myfav">
+        我的收藏
+      </dd></a>
+
+      <a href="/refundList">
+      <dd id="refundList">
+        我的退换货
+      </dd></a>
+      <a href="/myCoupons">
+      <dd id="myCoupons">
+        我的优惠券
+      </dd></a>
+      <a href="/mySales">
+      <dd id="mySales">
+        店铺消费记录
+      </dd></a>
+    </dl>
+  </li>
+  <li class="hover">
+    <p class="hp">
+      账户中心
+    </p><a class="a_1"></a>
+    <dl>
+      <a href="/UpdatePassword">
+      <dd id="reset">
+        安全设置
+      </dd></a>
+      <a href="/myOrder"><!--
+      <dd id="myPackages">
+        跟踪包裹
+      </dd> --></a>
+    </dl>
+  </li>
+</ul>
+<script type="text/javascript">
+  var pathName = window.location.pathname;
+  $("#" + pathName.substring(1, pathName.length)).addClass('hover');
+</script>
+        <div class="ri_1" style="overflow: visible">
+          <p class="hp2">
+            我的订单
+          </p>
+          <p class="hp3">
+            <select name="choose" id="submitDate">
+              <option id="0" value="0">全部订单</option>
+              <option id="-3" value="-3" selected="selected">三个月内</option>
+              <option id="-6" value="-6">半年内</option>
+              <option id="-9" value="-9">九个月内</option>
+              <option id="-12" value="-12">一年内</option>
+            </select>
+            <input type="button" class="tj" value="查询" style="display:none"/>
+            <input type="text"
+            class="txt" value="商品名称、货号、订单编号" onclick="this.value=''" style="display:none" />
+          </p>
+          <!--<script src="/skin/js/jquery.select.js" type="text/javascript"></script>-->
+          <!--box-->
+
+          <div class="box">
+            <p class="hp4">
+              <span class="sp_1">商品名称</span><span class="sp_2">单价价（元）</span><span
+              class="sp_2">实付款（元）</span><span class="sp_3">数量</span><span
+              class="sp_2">交易状态</span><span class="sp_2">操作</span>
+            </p>
+
+              {% for order in orders %}
+                <table cellpadding="0" cellspacing="0" class="d_d">
+                  <tbody>
+                    <tr>
+                      <td colspan="4">
+                      <div class="hp5">
+                        <input type="checkbox">
+                        <b>{{ order.o_establish }}</b>
+                        <form id="_form" method="post" action="">
+                          <input type="hidden"  name="id" value="266651">
+                          <span>订单号：<a onclick="checkOrderDetail(266651)">{{ order.id_num }}</a></span>
+                        </form>
+                      </div></td>
+                    </tr>
+                    <tr>
+                      <td class="o_li">
+                      <dl>
+
+                          <dd>
+                            <span class="sp_01"><a href=""><img src="{% static 'images/foot_03.jpg' %}" /></a>
+                              <p>
+                                {{ order.o_long_name }}<b>颜色分类：{{ order.o_color }} 尺码：{{ order.o_size }}</b>
+                              </p> </span><span class="sp_02">{{ order.o_total_price }}</span>
+                          </dd>
+
+                      </dl></td>
+                      <td class="t_li"><b>{{ order.o_price }}</b>（包含运费）</td>
+                      <td class="s_li">
+	                      <dl>
+	                          <dd>
+	                            {{ order.o_num }}
+	                          </dd>
+
+	                      </dl>
+	                      <span class="sp_1">
+	                      <b>
+                            {% if order.o_is_anonyous %}
+                              未付款
+                              {% else %}
+                              已付款
+                            {% endif %}
+	                        </b>
+	                       </span>
+                        </td>
+                        <td class="f_li">
+
+                        </td>
+                        </tr>
+                        </tbody>
+                  </table>
+              {% endfor %}
+
+            <div class="pager">
+                <p style="text-align: center;"></p>
+            </div>
+
+        </div>
+        <!--box end-->
+      </div>
+    </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,176 @@
+{% extends 'public.html' %}
+{% load static %}
+
+ {% block content %}
+    <div id="box">
+      <div class="jie_6">
+
+        <div class="cp_li">
+
+          <P class="hp_1">
+            <span class="sp_1">您已选择：</span>
+            <span id="queryContainer" class="sp_2"></span>
+          </P>
+
+          <!--仿优购-->
+          <div class="ygFilterCon">
+
+            <dl class="defaultCat" >
+
+              <dt>品牌</dt>
+
+              <dd>
+                    <!-- np -->
+                <ul class="catList">
+                  {% for f in brand_f %}
+                  <li>
+                      <a href="javascript:void(0);" onclick="javascript:getUrl5('brandName', '{{ f.g_brand }}'); void(0);" title="{{ f.g_brand }}"><i></i>{{ f.g_brand }}<em class="Gray">({{ f.num }}) </em></a>
+                    </li>
+                  {% endfor %}
+                 {% for l in brand_l %}
+                    <li id='more' style="display:none">
+                      <a href="javascript:void(0);" onclick="javascript:getUrl5('brandName', '{{ l.g_brand }}'); void(0);" title="{{ l.g_brand }}"><i></i>{{ l.g_brand }}<em class="Gray">({{ l.num }}) </em></a>
+                    </li>
+                  {% endfor %}
+                </ul>
+                {% if brand_l %}
+
+                <a href="javascript:void(0);" class="moreLink down" id="moreLink" style="display:inline" onclick="javascript:showMore(); void(0);">更多<I></I></a>
+
+                {% endif %}
+              </dd>
+
+            </dl>
+
+            <dl class="defaultCat" >
+
+              <dt>性别</dt>
+
+              <dd>
+
+                <ul class="catList">
+                    {% for ge in gender %}
+                      <li>
+                        <a href="javascript:void(0);" onclick="javascript:getUrl5('GD', '{{ ge.g_style }}');" title="{{ ge.g_style }}"><i></i>{{ ge.g_style }}<em class="Gray">({{ge.num}})</em></a>
+
+                      </li>
+                    {% endfor %}
+
+                </ul>
+
+              </dd>
+
+            </dl>
+
+
+
+            <dl class="defaultCat" >
+
+              <dt>分类</dt>
+
+              <dd>
+
+                <ul class="catList">
+                    {% for cla in clasify %}
+                      <li>
+
+                        <a href="javascript:void(0);" onclick="javascript:getUrl5('rootName', '{{ cla.c_name }}');" title="{{ cla.c_name }}"><i></i>{{ cla.c_name }}<em class="Gray">({{ cla.num }}) </em></a>
+
+                      </li>
+                      {% endfor %}
+
+                </ul>
+
+              </dd>
+
+            </dl>
+
+
+            <dl class="defaultCat" >
+
+              <dt>价格</dt>
+
+              <dd>
+
+                <ul class="catList">
+                  {% for p in price_list %}
+                    <li>
+
+                      <a href="javascript:void(0);" onclick="javascript:getUrl5('currentPrice', '{{ p.name }}');"  target="_blank" title="{{ p.name }}元"><i></i>{{ p.name }}元<em class="Gray">({{ p.num }}) </em></a>
+
+                    </li>
+                  {% endfor %}
+
+                </ul>
+
+              </dd>
+
+            </dl>
+
+          </div>
+
+          <!--仿优购 end -->
+
+          <p class="hp_2 clear">
+
+            <span class="sp_1">
+              <b>排序方式：</b>
+              <a href="javascript:void(0);" onclick="javascript:getUrl4('{{ s }}', '&sort=price-asc');" class="a_2">价格升序</a>
+              <a href="javascript:void(0);" onclick="javascript:getUrl4('{{ s }}', '&sort=price-desc');" class="a_2">价格降序</a>
+              <a href="javascript:void(0);" onclick="javascript:getUrl4('{{ s }}', '&sort=sales-asc');" class="a_2">销量升序</a>
+              <a href="javascript:void(0);" onclick="javascript:getUrl4('{{ s }}', '&sort=sales-desc');" class="a_2">销量降序</a>
+            </span>
+
+            <span class="sp_2"> <a>总共找到<b>{{ number }}</b>件产品</a> <a>{{ pg }}/{{ nums }}</a>
+              {% if page.has_next %}
+                <a href="javascript:void(0);" onclick="javascript:getUrl4('{{ s1 }}', '&page={{ page.next_page_number }}')" class="a_2"></a>
+              {% else %}
+                 <a href="javascript:void(0);" onclick="javascript:getUrl4('{{ s1 }}', '&page=1')" class="a_2"></a>
+
+              {% endif %}
+              </span>
+
+          </p>
+
+          <ul class="li_2">
+            {% for goods in page %}
+              <li>
+
+                <a href="/detail/{{ goods.id }}" target="_blank">
+                  <img src="{% static goods.g_thumbail %}" alt="{{ goods.g_long_name }}" onerror="imgError(this);"/>
+                  <span class="sp_1">{{ goods.g_brand }}</span>
+                  <span class="sp_2">专柜价：￥ {{ goods.g_shoppe }}</span>
+                  <span class="sp_3">五环价：￥ {{ goods.g_price }}</span>
+                </a>
+
+              </li>
+            {% endfor %}
+
+          </ul>
+          <!--翻页-->
+
+          <p id="fanye">
+            {% if page.has_previous %}
+            <a href="javascript:void(0);" onclick="javascript:getUrl4({{ s1 }}, '&page={{ page.next_page_number }}')" class="a_5">
+            </a>
+            {% else %}
+                <a href="javascript:void(0);"  class="a_5"></a>
+            {% endif %}
+
+
+          {% if page.has_next %}
+            <a href="javascript:void(0);" onclick="javascript:getUrl4({{ s1 }}, '&page={{ page.next_page_number }}')" class="a_2"></a>
+          {% else %}
+             <a href="javascript:void(0);"  class="a_2"></a>
+
+          {% endif %}
+
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+{% endblock content %}

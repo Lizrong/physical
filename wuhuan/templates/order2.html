@@ -1,0 +1,73 @@
+
+{% extends 'public.html' %}
+{% load static %}
+{% block script_link %}
+     <script src="{% static 'js/order2.js' %}"></script>
+{% endblock %}
+{% block content %}
+
+	<!--加载主页-->
+
+	<div id="box_2" style="border: none">
+
+		<div class="tj_p1">
+
+			<p>
+
+				<span class="sp_2" style="float:none">请您在<b class="b_2">60分钟</b>内完成支付 否则订单将会取消</span>
+
+				<span><img src="{% static 'images/go1.png' %}" /> <b class="b_1">订单提交成功，请尽快付款</b></span>
+
+				<span id="ord_num">订单号：{{ ord_num }}</span>
+
+				<span>订单总额：<b class="b_2">{{ order.o_total_price }}</b>元</span>
+
+				<span>应付金额：<b class="b_2">{{ order.o_total_price }}</b>元</span>
+
+				<div style="clear: both;"></div>
+
+			</p>
+
+		</div>
+
+		<ul class="tj_p2">
+
+					<li><input class='target' type="radio" name="zs" checked="checked"
+
+						value="/preAlipay" id="3"/> <span>支付宝</span> <span><img
+
+							src="{% static 'payImage/alipay.gif' %}" /></span> <span class="sp_1">支付金额（元）：<b
+
+							class="b_1">{{ order.o_total_price }}</b>
+
+					</span></li>
+
+				
+
+
+			<form id='form1' name="form1" action="" method="get">
+
+				<input type="hidden" name="orderNo" value="{{ ord_num }}">
+
+			</form>
+
+			<a href="javascript:void(0)" class="button_1" onclick="choosePay1({{ ord_num }})">支付</a>
+
+		</ul>
+
+    </div>
+
+    <div id='box_s' style="display: none;position: absolute;width:100%;height:800px;top:0;background:black;opacity: 0.3;z-index: 100">
+        </div>
+        <div id="tjc">
+
+            <div style="align-content: center;margin-left: 120px;margin-top:64px;" id="zf1"><h1>正在支付...</h1></div>
+            <div style="align-content: center;margin-left: 120px;margin-top:64px;color: red" id="zf3"><h1>支付失败</h1></div>
+            <ul class="tjc" id="zf2" style="margin-left:90px;margin-top:58px;">
+                <li><img src="{% static 'images/go1.png' %}"/><span>支付成功</span></li>
+            </ul>
+
+        </div>
+
+
+{% endblock content %}

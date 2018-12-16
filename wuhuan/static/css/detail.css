@@ -1,0 +1,40 @@
+#box .jie_8 .ri_2 .f_j .fjbox{
+    width:948px;
+    border:1px solid #CCC;
+    padding:10px; margin-bottom:15px;
+    overflow:hidden;
+    border-top:none;
+    display: block;
+}
+#box .jie_8 .ri_2 .f_j .shoping_speak {
+    width: 948px;
+    border: 1px solid #CCC;
+    padding: 10px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    border-top: none;
+    display: none;
+}
+#box .jie_8 .ri_2 .f_j .shoping_speak li .good_speak{
+    width: 945px;
+    height: 35px;
+    background:#f9f9f9;
+    font-size: 20px;
+}
+#box .jie_8 .ri_2 .f_j .shoping_speak li .price_explain{
+    width: 945px;
+    height: 250px;
+    background:#f9f9f9;
+    font-size: 17px;
+    font-family: "微软雅黑", Arial;
+
+}
+#box .jie_8 .ri_2 .f_j .shoping_speak li .safety{
+    width: 945px;
+    height: 300px;
+    background:#f9f9f9;
+    font-size: 17px;
+    font-family: "微软雅黑", Arial;
+
+}
+
